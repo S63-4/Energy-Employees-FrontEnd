@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="header">
+    <p class="logintext">Login</p>
+  </div>
+
+  <div class="form">
+    <form class="example-form">
+      <input
+        type="text"
+        placeholder="Customernumber"
+        [(ngModel)]="clientNr"
+        id="clientNr"
+        name="clientNr"
+        [value]="clientNr"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        id="password"
+        name="password"
+        [value]="password"
+        required
+      />
+    </form>
+  </div>
+
+  <button class="login-button" (click)="login()">Login</button>
+
+  <p class="registertext">
+    Don't have an account yet? Click
+    <a (click)="register()" class="here">here</a> to register.
+  </p>
+</div>

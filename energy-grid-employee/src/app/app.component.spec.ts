@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'energy-grid-employee'`, () => {
+  it(`should have as title 'Corona-Energy-Grid-Frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('energy-grid-employee');
+    expect(app.title).toEqual('Corona-Energy-Grid-Frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('energy-grid-employee app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Corona-Energy-Grid-Frontend app is running!');
   });
 });
