@@ -1,15 +1,15 @@
-import { Component } from "@angular/core";
-import { AuthenticationService } from "./REST/authentication.service";
-import { AppConfig } from "./app.config";
-import { Router } from "@angular/router";
+import { Component } from '@angular/core';
+import { AuthenticationService } from './REST/authentication.service';
+import { AppConfig } from './app.config';
+import { Router } from '@angular/router';
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = "Employee portal Energy Grid";
-  loggedIn: boolean = false;
+  title = 'Employee portal Energy Grid';
+  loggedIn = false;
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -22,10 +22,10 @@ export class AppComponent {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-        console.log("ingelogd");
+        console.log('ingelogd');
       } else {
         localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl('/login');
       }
     });
   }

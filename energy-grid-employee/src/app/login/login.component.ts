@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { AuthenticationService } from "../REST/authentication.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../REST/authentication.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   clientNr: string;
@@ -24,6 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   register(): void {
-    this.router.navigate(["register"]);
+    this.router.navigate(['register']);
   }
 }
