@@ -22,8 +22,4 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authenticationService.getLogin(this.clientNr, this.password);
   }
-
-  register(): void {
-    this.router.navigate(['register']);
-  }
 }
