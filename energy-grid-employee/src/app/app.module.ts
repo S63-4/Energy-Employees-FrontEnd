@@ -10,8 +10,9 @@ import { Authentication } from './app-routing-guards';
 import { httpInterceptors } from './REST/http-interceptors/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './changepassword/changepassword.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
