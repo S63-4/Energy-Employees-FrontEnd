@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd Corona-Energy-Grid-Frontend
+    cd energy-grid-employee
     npm install -g @angular/cli
     npm install
     ng update --all --force
