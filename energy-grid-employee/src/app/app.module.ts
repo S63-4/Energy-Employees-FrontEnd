@@ -11,8 +11,9 @@ import { httpInterceptors } from './REST/http-interceptors/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
+import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
