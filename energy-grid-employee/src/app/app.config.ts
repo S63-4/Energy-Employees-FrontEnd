@@ -4,6 +4,7 @@ export class AppConfig {
   static ApiUrls = {
     LOGIN: "/login",
     CHANGEPASS: "/user/user/changepass",
+    NEWCUSTOMER: "/customer/new"
   };
   static LocalStorageKeys = {
     TOKEN: "token",

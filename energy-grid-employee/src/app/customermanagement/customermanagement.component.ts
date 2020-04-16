@@ -25,8 +25,17 @@ export class CustomermanagementComponent implements OnInit {
   }
 
   newCustomer():void {
-    console.log(this.firstname);
-
-  }
-
+    var url = `${AppConfig.ApiBaseURL}${AppConfig.ApiUrls.NEWCUSTOMER}`;
+    this.http.post(url, {
+      firstname : this.firstname,
+      lastname: this.lastname,
+      email: this.email,
+      phone: this.phone,
+      mobile: this.mobile,
+      street: this.street,
+      housenumber: this.housenumber,
+      zipcode: this.zipcode,
+      city: this.zipcode
+    })
+  };
 }
