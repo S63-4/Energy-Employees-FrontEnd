@@ -1,1 +1,13 @@
-<p>newcustomer works!</p>
+<div class="newcustomer">
+  <h2>Nieuwe Klant</h2>
+  <input [(ngModel)]="firstname" placeholder="Voornaam" />
+  <input [(ngModel)]="lastname" placeholder="Achternaam" />
+  <input [(ngModel)]="email" placeholder="E-mail" />
+  <input [(ngModel)]="phone" placeholder="Telefoon" />
+  <input [(ngModel)]="mobile" placeholder="Mobiel" />
+  <input [(ngModel)]="street" placeholder="Straat" />
+  <input [(ngModel)]="housenumber" placeholder="Huisnummer" />
+  <input [(ngModel)]="zipcode" placeholder="Postcode" />
+  <input [(ngModel)]="city" placeholder="Woonplaats" />
+  <button class="register" (click)="newCustomer()">Registreer nieuwe klant</button>
+</div>

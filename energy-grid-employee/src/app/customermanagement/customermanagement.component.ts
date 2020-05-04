@@ -9,36 +9,9 @@ import { AppConfig } from "../app.config";
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomermanagementComponent implements OnInit {
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-  mobile: string;
-  street: string;
-  housenumber: string;
-  zipcode: string;
-  city: string;
 
-  constructor(private http: HttpClient) {  }
+  constructor() {  }
 
   ngOnInit(): void {
   }
-
-  newCustomer():void {
-
-    console.log(this.firstname);
-
-    var url = `${AppConfig.ApiBaseURL}${AppConfig.ApiUrls.NEWCUSTOMER}`;
-    this.http.post(url, {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.email,
-      phone: this.phone,
-      mobile: this.mobile,
-      street: this.street,
-      housenumber: this.housenumber,
-      zipcode: this.zipcode,
-      city: this.zipcode
-    })
-  };
 }
