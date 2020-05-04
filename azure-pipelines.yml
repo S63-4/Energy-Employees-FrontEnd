@@ -23,6 +23,7 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 - script: |
+    cd energy-grid-employee
     docker build -t $(DOCKER_USER)/$(CI_PROJECT_NAME) .
     docker tag $(DOCKER_USER)/$(CI_PROJECT_NAME) $(DOCKER_USER)/$(CI_PROJECT_NAME):$(Build.SourceVersion)
     docker login -u $(DOCKER_USER) -p $(DOCKER_PASSWORD)
