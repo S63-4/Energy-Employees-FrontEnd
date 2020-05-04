@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Router } from '@angular/router';
 import { AppConfig } from "../app.config";
 
 @Component({
@@ -10,8 +11,12 @@ import { AppConfig } from "../app.config";
 })
 export class CustomermanagementComponent implements OnInit {
 
-  constructor() {  }
+  constructor(private router: Router) {  }
 
   ngOnInit(): void {
   }
+
+  openNewCustomer():void {
+    this.router.navigateByUrl('customermanagement/newcustomer');
+  };
 }
