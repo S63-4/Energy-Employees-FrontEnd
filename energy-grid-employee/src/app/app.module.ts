@@ -12,8 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
 import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
+import { NewcustomerComponent } from './customermanagement/newcustomer/newcustomer.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
