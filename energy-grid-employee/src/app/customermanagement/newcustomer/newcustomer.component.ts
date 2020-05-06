@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {customer} from '../../models/customer';
+import { Router } from '@angular/router';
 import {AppConfig} from "../../app.config";
+import {catchError, map} from "rxjs/operators";
+import {AuthenticationService} from "../../REST/authentication.service";
 
 @Component({
   selector: 'app-newcustomer',
   templateUrl: './newcustomer.component.html',
   styleUrls: ['./newcustomer.component.scss']
 })
+
 export class NewcustomerComponent implements OnInit {
   firstname: string;
   lastname: string;
@@ -18,7 +23,12 @@ export class NewcustomerComponent implements OnInit {
   zipcode: string;
   city: string;
 
-  constructor(private http: HttpClient) {  }
+  customer: customer;
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {  }
 
   ngOnInit(): void {
   }
@@ -27,18 +37,14 @@ export class NewcustomerComponent implements OnInit {
 
     console.log(this.firstname);
 
-    var url = `${AppConfig.ApiBaseURL}${AppConfig.ApiUrls.NEWCUSTOMER}`;
-    this.http.post(url, {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.email,
-      phone: this.phone,
-      mobile: this.mobile,
-      street: this.street,
-      housenumber: this.housenumber,
-      zipcode: this.zipcode,
-      city: this.zipcode
-    })
-  };
+    this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city);
 
+    this.authenticationService.postNewCustomer(this.customer).subscribe(
+      result => {
+        if (result === this.firstname) {
+          this.router.navigate(['customermanagement']);
+        }
+      }
+    );
+  }
 }

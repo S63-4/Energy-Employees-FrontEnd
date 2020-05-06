@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { AppConfig } from '../app.config';
 import { CookieService } from 'ngx-cookie-service';
 import { user } from '../models/user';
+import { customer } from '../models/customer';
 @Injectable({
   providedIn: 'root',
 })
@@ -58,6 +59,14 @@ export class AuthenticationService {
     return this.http.post<user>(serverURL, user).pipe(
       map((result) => (result as unknown) as string),
       catchError(this.handleError<any>('postRegistert'))
+    );
+  }
+
+  postNewCustomer(customer: customer): Observable<any> {
+    const serverURL = AppConfig.ApiBaseURL + AppConfig.ApiUrls.NEWCUSTOMER
+    return this.http.post<customer>(serverURL, customer).pipe(
+      map((result) => (result as unknown) as string),
+      catchError(this.handleError<any>('postNewCustomer'))
     );
   }
 
