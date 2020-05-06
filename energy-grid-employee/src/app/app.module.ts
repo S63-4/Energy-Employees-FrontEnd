@@ -13,8 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
 import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
 import { NewcustomerComponent } from './customermanagement/newcustomer/newcustomer.component';
+import { SearchcustomerComponent } from './customermanagement/searchcustomer/searchcustomer.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
