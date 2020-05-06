@@ -10,17 +10,34 @@ import { Authentication } from './app-routing-guards';
 import { httpInterceptors } from './REST/http-interceptors/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
+import { StompService } from 'ng2-stomp-service';
+import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from "@stomp/ng2-stompjs";
+import {stompConfig} from "./app.stomp.config";
+import { TestComponent } from './test/test.component';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, TestComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
-  providers: [Authentication, httpInterceptors, CookieService],
+  providers: [
+    Authentication,
+    httpInterceptors,
+    CookieService,
+    {
+      provide: InjectableRxStompConfig,
+      useValue: stompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

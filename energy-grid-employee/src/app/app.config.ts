@@ -1,3 +1,5 @@
+import { Rcv_message } from "./websocket/messages/messagemodels/rcv_message";
+
 export class AppConfig {
   static ApiBaseURL = 'http://localhost:8762';
 
@@ -6,5 +8,8 @@ export class AppConfig {
   };
   static LocalStorageKeys = {
     TOKEN: 'token'
+  };
+  static LocalStorageMessage = {
+    MESSAGE: Rcv_message
   };
 }
