@@ -18,4 +18,8 @@ export class CustomermanagementComponent implements OnInit {
   openNewCustomer():void {
     this.router.navigateByUrl('customermanagement/newcustomer');
   };
+
+  openSearchCustomer():void {
+    this.router.navigateByUrl('customermanagement/searchcustomer');
+  };
 }

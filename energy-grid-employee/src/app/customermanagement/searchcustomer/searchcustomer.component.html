@@ -1,5 +1,5 @@
 <div class="searchcustomer">
   <h2>Klant zoeken</h2>
-  <input placeholder="Klantnummer of email" />
-  <button class="search" >Zoeken</button>
+  <input [(ngModel)]="searchquery"  placeholder="Klantnummer of email" />
+  <button class="search" (click)="searchCustomer()">Zoeken</button>
 </div>

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchcustomerComponent implements OnInit {
 
+  searchquery: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  searchCustomer():void {
+
+    console.log(this.searchquery);
+
   }
 
 }

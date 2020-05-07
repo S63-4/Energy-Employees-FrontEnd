@@ -35,16 +35,19 @@ export class NewcustomerComponent implements OnInit {
 
   newCustomer():void {
 
-    console.log(this.firstname);
+    if(this.firstname !== ''){
+      this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city);
 
-    this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city);
-
-    this.authenticationService.postNewCustomer(this.customer).subscribe(
-      result => {
-        if (result === this.firstname) {
-          this.router.navigate(['customermanagement']);
+      this.authenticationService.postNewCustomer(this.customer).subscribe(
+        result => {
+          if (result === this.firstname) {
+            this.router.navigate(['customermanagement']);
+          }
         }
-      }
-    );
+      );
+    }
+    else{
+      alert("Alle velden moeten worden ingevuld");
+    }
   }
 }
