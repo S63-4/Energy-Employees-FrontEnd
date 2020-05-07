@@ -1,5 +1,22 @@
 <div class="searchcustomer">
   <h2>Klant zoeken</h2>
-  <input [(ngModel)]="searchquery"  placeholder="Klantnummer of email" />
+  <input [(ngModel)]="searchquery"  placeholder="Klantnummer" />
   <button class="search" (click)="searchCustomer()">Zoeken</button>
 </div>
+
+<div class="currentcustomer">
+  <div *ngIf="customer != null">
+    <div>{{ customer.firstName }}</div>
+    <div>{{ customer.lastName }}</div>
+    <div>{{ customer.email }}</div>
+    <div>{{ customer.phoneNumber }}</div>
+    <div>{{ customer.mobileNumber }}</div>
+    <div>{{ customer.street }}</div>
+    <div>{{ customer.houseNumber }}</div>
+    <div>{{ customer.zipCode }}</div>
+    <div>{{ customer.city }}</div>
+    <div>{{ customer.customerCode }}</div>
+    <button>Verwijder Klant</button>
+  </div>
+</div>
+

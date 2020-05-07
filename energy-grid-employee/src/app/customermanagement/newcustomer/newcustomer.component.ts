@@ -35,8 +35,8 @@ export class NewcustomerComponent implements OnInit {
 
   newCustomer():void {
 
-    if(this.firstname !== ''){
-      this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city);
+    if(this.email = null){
+      this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city, "");
 
       this.authenticationService.postNewCustomer(this.customer).subscribe(
         result => {

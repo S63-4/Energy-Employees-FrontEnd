@@ -8,8 +8,9 @@ export class customer {
   houseNumber: number;
   zipCode: string;
   city: string;
+  customerCode: string;
 
-  constructor(firstName, lastName, email, phoneNumber, mobileNumber, street, houseNumber, zipcode, city) {
+  constructor(firstName, lastName, email, phoneNumber, mobileNumber, street, houseNumber, zipcode, city, customerCode) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -19,5 +20,6 @@ export class customer {
     this.houseNumber = houseNumber;
     this.zipCode = zipcode;
     this.city = city;
+    this.customerCode = customerCode;
   }
 }
