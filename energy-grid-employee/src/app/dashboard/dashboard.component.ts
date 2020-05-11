@@ -7,7 +7,6 @@ import {
   QueryList,
   Renderer2,
 } from "@angular/core";
-import { DashboardDataPoint } from "../models/dashboard-data-point.model";
 import { Chart } from "chart.js";
 import { HttpClient } from "@angular/common/http";
 import { AppConfig } from "../app.config";
@@ -44,7 +43,7 @@ export class DashboardComponent implements OnInit {
             AppConfig.ApiUrls.CHANGEPASS
           }?statusPeriod=${period}&currentDate=${new Date().getTime()}`
       )
-      .subscribe((datapoint: DashboardDataPoint) => {
+      .subscribe((datapoint : any) => {
         let consumption: ChartModel = new ChartModel("Consumptie");
         consumption.backgroundColor = "rgba(255,0,0, 0.8)";
         let production: ChartModel = new ChartModel("Productie");
