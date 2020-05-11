@@ -3,7 +3,7 @@ import {RxStompService} from "@stomp/ng2-stompjs";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from 'sockjs-client';
 import {AuthenticationService} from "../REST/authentication.service";
-import {HelloMessage} from "./models/hellomessage";
+import {HelloMessage} from "../websocket/messages/hellomessage";
 
 @Component({
   selector: 'app-test',

@@ -1,4 +1,4 @@
-import { Rcv_message } from "./websocket/messages/messagemodels/rcv_message";
+import { Rcv_message } from "./websocket/messages/JSONmodels/rcv_message";
 
 export class AppConfig {
   static ApiBaseURL = "http://localhost:8762";

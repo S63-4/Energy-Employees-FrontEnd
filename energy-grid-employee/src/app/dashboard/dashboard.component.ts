@@ -10,6 +10,9 @@ import {
 import { Chart } from "chart.js";
 import { HttpClient } from "@angular/common/http";
 import { AppConfig } from "../app.config";
+import {HelloMessage} from "../websocket/messages/hellomessage";
+import {Stomp} from "@stomp/stompjs";
+import * as SockJS from 'sockjs-client';
 
 @Component({
   selector: "app-dashboard",
@@ -25,6 +28,8 @@ export class DashboardComponent implements OnInit {
   chartData: ChartModel[] = [];
   labels: string[] = [];
   chart: Chart;
+  hellomsg: HelloMessage;
+  private stompClient: any;
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {}
@@ -90,6 +95,31 @@ export class DashboardComponent implements OnInit {
           },
         });
       });
+  }
+
+  connect() {
+    var socket = new SockJS('http://localhost:9060/websocket');
+    this.stompClient = Stomp.over(socket);
+    console.log(socket);
+    this.stompClient.connect({}, (frame) => {
+      console.log('Connected: ' + frame);
+      this.stompClient.subscribe('/topic/greetings', function (greeting) {
+        console.log(JSON.parse(greeting.body).content);
+      });
+    });
+  }
+
+  disconnect() {
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+    }
+    console.log("Disconnected");
+  }
+
+  sendName() {
+    this.hellomsg = new HelloMessage();
+    this.hellomsg.setName("lotte");
+    this.stompClient.send("/app/hello", {}, JSON.stringify(this.hellomsg));
   }
 }
 class ChartModel {
