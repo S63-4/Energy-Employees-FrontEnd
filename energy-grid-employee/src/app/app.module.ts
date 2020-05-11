@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { Authentication } from './app-routing-guards';
 import { httpInterceptors } from './REST/http-interceptors/interceptors';
@@ -15,7 +16,7 @@ import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '
 import { stompConfig } from './app.stomp.config';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
