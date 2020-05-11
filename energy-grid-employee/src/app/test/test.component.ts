@@ -3,6 +3,7 @@ import {RxStompService} from "@stomp/ng2-stompjs";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from 'sockjs-client';
 import {AuthenticationService} from "../REST/authentication.service";
+import {HelloMessage} from "./models/hellomessage";
 
 @Component({
   selector: 'app-test',
@@ -10,6 +11,7 @@ import {AuthenticationService} from "../REST/authentication.service";
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  hellomsg: HelloMessage;
 
   constructor(private auth : AuthenticationService) { }
 
@@ -21,10 +23,10 @@ export class TestComponent implements OnInit {
 
   connect() {
     console.log("klikt");
-    var socket = new SockJS('http://localhost:8762/data-forwarder/websocket');
+    var socket = new SockJS('http://localhost:9060/websocket');
     this.stompClient = Stomp.over(socket);
     console.log(socket);
-    this.stompClient.connect({}, function (frame) {
+    this.stompClient.connect({}, (frame) => {
       console.log('Connected: ' + frame);
       this.stompClient.subscribe('/topic/greetings', function (greeting) {
         console.log(JSON.parse(greeting.body).content);
@@ -40,6 +42,8 @@ export class TestComponent implements OnInit {
   }
 
   sendName() {
-    this.stompClient.send("/app/hello", {}, "test");
+    this.hellomsg = new HelloMessage();
+    this.hellomsg.setName("lotte");
+    this.stompClient.send("/app/hello", {}, JSON.stringify(this.hellomsg));
   }
 }
