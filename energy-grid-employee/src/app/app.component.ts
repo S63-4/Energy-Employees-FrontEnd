@@ -22,7 +22,7 @@ export class AppComponent {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-        console.log('ingelogd');
+            console.log('ingelogd');
         this.router.navigateByUrl('/test');
       } else {
         localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);

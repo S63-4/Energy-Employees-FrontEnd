@@ -1,0 +1,35 @@
+.title {
+  display: inline;
+}
+#dashboard-chart {
+  margin: 25px 0 0 25px;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+}
+.dashboard-filter-container {
+  background: var(--info);
+  color: white;
+  overflow: hidden;
+  border-radius: 30px;
+  display: inline-flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-left: 7px;
+  .dashboard-filter {
+    padding: 0 5px;
+    div {
+      display: inline-block;
+      padding: 3px 5px;
+      font-size: 19px;
+      &:hover,
+      &.checked {
+        background: #148c9f;
+        cursor: pointer;
+        border-radius: 30px;
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   /** GET login codes from the server */
   getLogin(clientnr: string, password: string) {
-    const URL = `${AppConfig.ApiBaseURL}/login`;
+    const URL = `${AppConfig.ApiBaseURL}${AppConfig.ApiUrls.LOGIN}`;
     this.http
       .post<HttpResponse<any>>(
         URL,
