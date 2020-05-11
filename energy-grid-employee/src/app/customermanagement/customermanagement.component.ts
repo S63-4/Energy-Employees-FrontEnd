@@ -15,6 +15,10 @@ export class CustomermanagementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openCustomerOverview():void {
+    this.router.navigateByUrl('customermanagement/customeroverview');
+  };
+
   openNewCustomer():void {
     this.router.navigateByUrl('customermanagement/newcustomer');
   };
