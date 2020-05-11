@@ -14,8 +14,9 @@ import { ChangePasswordComponent } from './changepassword/changepassword.compone
 import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
 import { NewcustomerComponent } from './customermanagement/newcustomer/newcustomer.component';
 import { SearchcustomerComponent } from './customermanagement/searchcustomer/searchcustomer.component';
+import { CustomeroverviewComponent } from './customermanagement/customeroverview/customeroverview.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

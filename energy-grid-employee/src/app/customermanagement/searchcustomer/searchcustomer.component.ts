@@ -26,7 +26,14 @@ export class SearchcustomerComponent implements OnInit {
       .subscribe((data: customer) => {
         this.customer = data;
       }, error => console.log('oops', error) );
+  }
 
+  deleteCustomer():void{
+    this.http
+      .get(AppConfig.ApiBaseURL + AppConfig.ApiUrls.DELETECUSTOMER + "?customercode=" + this.searchquery)
+      .subscribe((data: customer) => {
+        this.customer = data;
+      }, error => console.log('oops', error) );
   }
 
 

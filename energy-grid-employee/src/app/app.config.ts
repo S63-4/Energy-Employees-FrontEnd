@@ -5,7 +5,8 @@ export class AppConfig {
     LOGIN: "/login",
     CHANGEPASS: "/user/user/changepass",
     NEWCUSTOMER: "/user/customer/new",
-    SEARCHCUSTOMER: "/user/customer/getByCustomerCode"
+    SEARCHCUSTOMER: "/user/customer/getByCustomerCode",
+    DELETECUSTOMER: "/user/customer/delete"
   };
   static LocalStorageKeys = {
     TOKEN: "token",
