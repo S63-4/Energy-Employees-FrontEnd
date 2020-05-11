@@ -11,11 +11,11 @@ import { httpInterceptors } from './REST/http-interceptors/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
-import { TestComponent } from './test/test.component';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { stompConfig } from './app.stomp.config';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, TestComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

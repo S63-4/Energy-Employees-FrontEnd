@@ -10,7 +10,6 @@ import {
 import { Chart } from "chart.js";
 import { HttpClient } from "@angular/common/http";
 import { AppConfig } from "../app.config";
-import {HelloMessage} from "../websocket/messages/hellomessage";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from 'sockjs-client';
 
@@ -28,7 +27,6 @@ export class DashboardComponent implements OnInit {
   chartData: ChartModel[] = [];
   labels: string[] = [];
   chart: Chart;
-  hellomsg: HelloMessage;
   private stompClient: any;
 
   constructor(private http: HttpClient) {}
@@ -103,7 +101,13 @@ export class DashboardComponent implements OnInit {
     console.log(socket);
     this.stompClient.connect({}, (frame) => {
       console.log('Connected: ' + frame);
-      this.stompClient.subscribe('/topic/greetings', function (greeting) {
+      /**
+       * depending on the simulator you want to connect to:
+       * /topic/regional for the regional simulator
+       * /topic/national for the national simulator
+       * /topic/market for the market simulator
+       */
+      this.stompClient.subscribe('/topic/regional', function (greeting) {
         console.log(JSON.parse(greeting.body).content);
       });
     });
@@ -115,13 +119,8 @@ export class DashboardComponent implements OnInit {
     }
     console.log("Disconnected");
   }
-
-  sendName() {
-    this.hellomsg = new HelloMessage();
-    this.hellomsg.setName("lotte");
-    this.stompClient.send("/app/hello", {}, JSON.stringify(this.hellomsg));
-  }
 }
+
 class ChartModel {
   label: string;
   data: number[] = [];
@@ -130,6 +129,7 @@ class ChartModel {
     this.label = label;
   }
 }
+
 enum StatusPeriod {
   YEAR,
   THREEMONTHS,
