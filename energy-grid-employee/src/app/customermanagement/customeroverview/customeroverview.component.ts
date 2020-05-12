@@ -25,9 +25,4 @@ export class CustomeroverviewComponent implements OnInit {
         this.customers = data;
       }, error => console.log('oops', error) );
   }
-
-  openSelectedCustomer():void{
-
-  }
-
 }

@@ -1,6 +1,6 @@
 <div>
   <h2>Menu</h2>
-  <button (click)="openCustomerOverview()">Klanten Overzicht</button>
-  <button (click)="openNewCustomer()">Nieuwe Klant</button>
-  <button (click)="openSearchCustomer()">Klant Zoeken</button>
+  <button [routerLink]="['/customermanagement/customeroverview']">Klanten Overzicht</button>
+  <button [routerLink]="['/customermanagement/newcustomer']">Nieuwe Klant</button>
+  <button [routerLink]="['/customermanagement/searchcustomer']">Klant Zoeken</button>
 </div>
