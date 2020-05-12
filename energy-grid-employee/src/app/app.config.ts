@@ -4,6 +4,7 @@ export class AppConfig {
   static ApiUrls = {
     LOGIN: "/login",
     CHANGEPASS: "/user/user/changepass",
+    AllCUSTOMERS: "/user/customer/profiles",
     NEWCUSTOMER: "/user/customer/new",
     SEARCHCUSTOMER: "/user/customer/getByCustomerCode",
     DELETECUSTOMER: "/user/customer/delete"

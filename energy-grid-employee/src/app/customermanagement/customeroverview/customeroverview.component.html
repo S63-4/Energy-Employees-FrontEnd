@@ -1,3 +1,18 @@
 <div class="customeroverview">
   <h2>Klant Overzicht</h2>
+
+  <div>
+    <table style="width: 100%">
+      <th>Klantnummer</th>
+      <th>Email</th>
+      <th>Voornaam</th>
+      <th>Achternaam</th>
+      <tr *ngFor="let customer of customers" >
+        <td>{{customer.customerCode}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
