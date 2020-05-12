@@ -1,18 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ViewChildren,
-  QueryList,
-  Renderer2,
-} from "@angular/core";
-import { Chart } from "chart.js";
+import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { AppConfig } from "../app.config";
-import {Stomp} from "@stomp/stompjs";
-import * as SockJS from 'sockjs-client';
-
+import { Stomp } from "@stomp/stompjs";
+import * as SockJS from "sockjs-client";
+import { Rcv_message } from "../websocket/JSONmodels/rcv_message";
+import { Chart } from "chart.js";
+import { DatePipe } from "@angular/common";
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -20,95 +12,99 @@ import * as SockJS from 'sockjs-client';
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  // Charts
-  chartOptions = {
-    responsive: false,
-  };
-  chartData: ChartModel[] = [];
-  labels: string[] = [];
-  chart: Chart;
   private stompClient: any;
-
-  constructor(private http: HttpClient) {}
-  ngOnInit(): void {}
+  data: Rcv_message[] = [];
+  lineChartData: ChartModel[] = [];
+  labels: string[] = [];
+  lineChart: Chart;
+  constructor() {}
+  ngOnInit(): void {
+    let production: ChartModel = new ChartModel(
+      "Productie",
+      false,
+      "rgba(255, 0, 0, 1)"
+    );
+    let consumption: ChartModel = new ChartModel(
+      "Consumptie",
+      false,
+      "rgba(0, 255, 0, 1)"
+    );
+    this.lineChartData.push(production, consumption);
+    this.connect("");
+  }
 
   onChartClick(event) {
     console.log(event);
   }
 
-  updateCharts(period) {
-    this.chartData = [];
-    this.labels = [];
-    this.http
-      .get(
-        AppConfig.ApiBaseURL +
-          `${
-            AppConfig.ApiUrls.CHANGEPASS
-          }?statusPeriod=${period}&currentDate=${new Date().getTime()}`
-      )
-      .subscribe((datapoint : any) => {
-        let consumption: ChartModel = new ChartModel("Consumptie");
-        consumption.backgroundColor = "rgba(255,0,0, 0.8)";
-        let production: ChartModel = new ChartModel("Productie");
-        production.backgroundColor = "rgba(0, 255, 0, 0.8)";
-        consumption.data.push(
-          datapoint.consumption.big_consumers.total_consumption
-        );
-        consumption.data.push(
-          datapoint.consumption.households.total_consumption
-        );
-        consumption.data.push(
-          datapoint.consumption.industries.total_consumption
-        );
-        production.data.push(datapoint.production.households.total_production);
-        production.data.push(
-          datapoint.production.power_plants.total_production
-        );
-        production.data.push(datapoint.production.solar_farms.total_production);
-        production.data.push(datapoint.production.wind_farms.total_production);
-        this.labels.push(datapoint.date.toLocaleTimeString());
-        this.chartData.push(consumption, production);
-        if (this.chart) this.chart.destroy();
-
-        let dashboard = document.getElementById("chart") as HTMLCanvasElement;
-        const context = dashboard.getContext("2d");
-        context.clearRect(0, 0, dashboard.width, dashboard.height);
-        this.chart = new Chart(dashboard, {
-          type: "bar",
-          data: {
-            labels: this.labels,
-            datasets: this.chartData,
-          },
-          options: {
-            responsive: false,
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    beginAtZero: true,
-                  },
-                },
-              ],
+  updateCharts(body: Rcv_message) {
+    var consumptionTotal =
+      body.consumption.big_consumers.total_consumption +
+      body.consumption.households.total_consumption +
+      body.consumption.industries.total_consumption;
+    var productionTotal =
+      body.production.households.total_production +
+      body.production.power_plants.total_production +
+      body.production.solar_farms.total_production +
+      body.production.wind_farms.total_production;
+    var productiondata = this.lineChartData.filter(
+      (l) => l.label == "Productie"
+    )[0];
+    var consumptiondata = this.lineChartData.filter(
+      (l) => l.label == "Consumptie"
+    )[0];
+    productiondata.data.push(productionTotal);
+    consumptiondata.data.push(consumptionTotal);
+    var datepipe = new DatePipe("en-US");
+    var date = datepipe.transform(body.date, "shortTime");
+    this.labels.push(date);
+    if (this.labels.length > 15) {
+      productiondata.data = productiondata.data.splice(0, 1);
+      consumptiondata.data = consumptiondata.data.splice(0, 1);
+      this.labels = this.labels.splice(0, 1);
+    }
+    if (this.lineChart) this.lineChart.destroy();
+    let dashboard = document.getElementById("chart") as HTMLCanvasElement;
+    const context = dashboard.getContext("2d");
+    context.clearRect(0, 0, dashboard.width, dashboard.height);
+    this.lineChart = new Chart(dashboard, {
+      type: "line",
+      data: {
+        labels: this.labels,
+        datasets: this.lineChartData,
+      },
+      options: {
+        responsive: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
             },
-          },
-        });
-      });
+          ],
+        },
+      },
+    });
   }
 
-  connect() {
-    var socket = new SockJS('http://localhost:9060/websocket');
+  /**
+   * depending on the simulator you want to connect to:
+   * /topic/regional for the regional simulator
+   * /topic/national for the national simulator
+   * /topic/market for the market simulator
+   */
+  connect(url: string) {
+    url = "/topic/regional";
+    var socket = new SockJS("http://localhost:9060/websocket");
     this.stompClient = Stomp.over(socket);
     console.log(socket);
     this.stompClient.connect({}, (frame) => {
-      console.log('Connected: ' + frame);
-      /**
-       * depending on the simulator you want to connect to:
-       * /topic/regional for the regional simulator
-       * /topic/national for the national simulator
-       * /topic/market for the market simulator
-       */
-      this.stompClient.subscribe('/topic/regional', function (greeting) {
-        console.log(JSON.parse(greeting.body).content);
+      console.log("Connected: " + frame);
+      this.stompClient.subscribe(url, (message) => {
+        let body: Rcv_message = new Rcv_message();
+        body.fillFromJSON(message.body);
+        this.updateCharts(body);
       });
     });
   }
@@ -120,19 +116,14 @@ export class DashboardComponent implements OnInit {
     console.log("Disconnected");
   }
 }
-
 class ChartModel {
   label: string;
   data: number[] = [];
-  backgroundColor: string;
-  constructor(label: string) {
+  borderColor: string;
+  fill: any;
+  constructor(label: string, fill, borderColor: string) {
     this.label = label;
+    this.fill = fill;
+    this.borderColor = borderColor;
   }
-}
-
-enum StatusPeriod {
-  YEAR,
-  THREEMONTHS,
-  MONTH,
-  WEEK,
 }

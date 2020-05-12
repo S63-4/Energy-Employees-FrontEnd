@@ -1,7 +1,7 @@
-export class Encapsulated_message {
-  messageData: string;
+// export class Encapsulated_message {
+//   messageData: string;
 
-  constructor(messageData: string) {
-    this.messageData = messageData;
-  }
-}
+//   constructor(messageData: string) {
+//     this.messageData = messageData;
+//   }
+// }
