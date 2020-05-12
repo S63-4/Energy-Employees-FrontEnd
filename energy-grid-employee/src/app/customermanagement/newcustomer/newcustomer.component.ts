@@ -33,14 +33,15 @@ export class NewcustomerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newCustomer():void {
+  newCustomer(): void {
 
-    if(this.email = null){
+    if(this.email != null){
       this.customer = new customer(this.firstname, this.lastname, this.email, this.phone, this.mobile, this.street, this.street, this.zipcode, this.city, "");
 
       this.authenticationService.postNewCustomer(this.customer).subscribe(
         result => {
           if (result === this.firstname) {
+            alert("klant toegevoegd!");
             this.router.navigate(['customermanagement']);
           }
         }
