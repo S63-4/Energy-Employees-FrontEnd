@@ -16,6 +16,14 @@
   padding: 10px 100px;
 }
 
+.customertable{
+  width: 100%;
+  text-align: left;
+  th{
+    height: 50px;
+  }
+}
+
 button {
   display: block;
   margin: 10px auto;

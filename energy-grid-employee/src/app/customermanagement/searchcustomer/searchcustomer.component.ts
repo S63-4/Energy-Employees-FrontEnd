@@ -25,7 +25,10 @@ export class SearchcustomerComponent implements OnInit {
       .get(AppConfig.ApiBaseURL + AppConfig.ApiUrls.SEARCHCUSTOMER + "?customercode=" + this.searchquery)
       .subscribe((data: customer) => {
         this.customer = data;
-      }, error => console.log('oops', error) );
+      }, error => {
+        this.customer = null;
+        alert("Klant niet gevonden!");
+      });
   }
 
   deleteCustomer():void{
