@@ -8,7 +8,7 @@
       <th>Voornaam</th>
       <th>Achternaam</th>
       <tr *ngFor="let customer of customers" >
-        <td>{{customer.customerCode}}</td>
+        <td><a [routerLink]="['/customermanagement/customeroverview/customer']" [queryParams]="{customerCode: customer.customerCode}">{{customer.customerCode}}</a></td>
         <td>{{customer.email}}</td>
         <td>{{customer.firstName}}</td>
         <td>{{customer.lastName}}</td>

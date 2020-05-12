@@ -22,11 +22,12 @@ export class CustomeroverviewComponent implements OnInit {
     this.http
       .get(AppConfig.ApiBaseURL + AppConfig.ApiUrls.AllCUSTOMERS)
       .subscribe((data: Array<customer>) => {
-
         this.customers = data;
-
-        console.log(this.customers);
       }, error => console.log('oops', error) );
+  }
+
+  openSelectedCustomer():void{
+
   }
 
 }
