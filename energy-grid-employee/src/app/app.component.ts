@@ -14,7 +14,7 @@ export class AppComponent {
     private authService: AuthenticationService,
     private router: Router
   ) {
-    this.subscribeEvents();
+    //this.subscribeEvents();
   }
 
   subscribeEvents(): void {
@@ -22,7 +22,7 @@ export class AppComponent {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-        this.router.navigateByUrl("/changepass");
+        this.router.navigateByUrl("/customermanagement");
       } else {
         localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);
         this.router.navigateByUrl('/login');

@@ -11,8 +11,13 @@ import { httpInterceptors } from './REST/http-interceptors/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
+import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
+import { NewcustomerComponent } from './customermanagement/newcustomer/newcustomer.component';
+import { SearchcustomerComponent } from './customermanagement/searchcustomer/searchcustomer.component';
+import { CustomeroverviewComponent } from './customermanagement/customeroverview/customeroverview.component';
+import { CustomerComponent } from './customermanagement/customeroverview/customer/customer.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
