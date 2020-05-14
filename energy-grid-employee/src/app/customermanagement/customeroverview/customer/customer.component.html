@@ -1,52 +1,62 @@
-<div class="customer" *ngIf="customer != null">
-  <h2>{{ customer.firstName }} {{ customer.lastName }}</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm col-md-8">
+      <div class="currentcustomer">
+        <div class="customer" *ngIf="customer != null">
+          <h2>{{ customer.firstName }} {{ customer.lastName }}</h2>
+        </div>
+        <div>
+          <table class="customertable">
+            <tr>
+              <td>Klantnummer:</td>
+              <td>{{ customer.customerCode }}</td>
+            </tr>
+            <tr>
+              <td>Voornaam:</td>
+              <td>{{ customer.firstName }}</td>
+            </tr>
+            <tr>
+              <td>Achternaam:</td>
+              <td>{{ customer.lastName }}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{ customer.email }}</td>
+            </tr>
+            <tr>
+              <td>Telefoon:</td>
+              <td>{{ customer.phoneNumber }}</td>
+            </tr>
+            <tr>
+              <td>Mobiel:</td>
+              <td>{{ customer.mobileNumber }}</td>
+            </tr>
+            <tr>
+              <td>Straat:</td>
+              <td>{{ customer.street }}</td>
+            </tr>
+            <tr>
+              <td>Huisnummer:</td>
+              <td>{{ customer.houseNumber }}</td>
+            </tr>
+            <tr>
+              <td>Postcode:</td>
+              <td>{{ customer.zipCode }}</td>
+            </tr>
+            <tr>
+              <td>Woonplaats:</td>
+              <td>{{ customer.city }}</td>
+            </tr>
 
-  <div class="currentcustomer">
-    <div>
-      <table class="customertable">
-        <tr>
-          <td>Klantnummer:</td>
-          <td>{{ customer.customerCode }}</td>
-        </tr>
-        <tr>
-          <td>Voornaam:</td>
-          <td>{{ customer.firstName }}</td>
-        </tr>
-        <tr>
-          <td>Achternaam:</td>
-          <td>{{ customer.lastName }}</td>
-        </tr>
-        <tr>
-          <td>Email:</td>
-          <td>{{ customer.email }}</td>
-        </tr>
-        <tr>
-          <td>Telefoon:</td>
-          <td>{{ customer.phoneNumber }}</td>
-        </tr>
-        <tr>
-          <td>Mobiel:</td>
-          <td>{{ customer.mobileNumber }}</td>
-        </tr>
-        <tr>
-          <td>Straat:</td>
-          <td>{{ customer.street }}</td>
-        </tr>
-        <tr>
-          <td>Huisnummer:</td>
-          <td>{{ customer.houseNumber }}</td>
-        </tr>
-        <tr>
-          <td>Postcode:</td>
-          <td>{{ customer.zipCode }}</td>
-        </tr>
-        <tr>
-          <td>Woonplaats:</td>
-          <td>{{ customer.city }}</td>
-        </tr>
-
-      </table>
-      <button (click)="deleteCustomer()">Verwijder deze klant</button>
+          </table>
+          <button [routerLink]="['/customermanagement/customeroverview']" class="btn btn-primary">Terug naar Overzicht</button>
+          <button (click)="deleteCustomer()" class="btn btn-primary">Verwijder deze klant</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
     </div>
   </div>
 </div>

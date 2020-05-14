@@ -1,22 +1,19 @@
-.searchcustomer {
-  display: inline-block;
+.searchbox{
+  text-align: center;;
+}
+
+.searchbox input{
   width: 50%;
-  padding: 10px 100px;
+  margin: 10px;
+}
+
+.customertable {
+  margin-top: 50px;
   text-align: center;
-  input {
-    width: 50%;
-    height: 25px;
-    margin-bottom: 12px;
-  }
 }
 
-.currentcustomer{
-  display: block;
-  width: 50%;
-  padding: 10px 100px;
-}
-
-.customertable{
+.customertable table{
+  margin-left: 20%;
   width: 100%;
   text-align: left;
   th{
@@ -24,12 +21,6 @@
   }
 }
 
-button {
-  display: block;
-  margin: 10px auto;
-  width: 50%;
-  height: 45px;
-  background: white;
-  border: black 1px solid;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.btn{
+  margin-top: 10px;
 }
