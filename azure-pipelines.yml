@@ -18,8 +18,8 @@ steps:
 - script: |
     cd energy-grid-employee
     npm install -g @angular/cli
-    npm install typescript@">=3.6.4 <3.9.0" 
     npm install
+    npm install typescript@">=3.6.4 <3.9.0" 
     ng update --all --force
     ng build --prod
   displayName: 'npm install and build'
