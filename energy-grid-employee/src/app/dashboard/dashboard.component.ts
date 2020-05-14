@@ -59,8 +59,8 @@ export class DashboardComponent implements OnInit {
     var date = datepipe.transform(body.date, "shortTime");
     this.labels.push(date);
     if (this.labels.length > 15) {
-      productiondata.data = productiondata.data.splice(0, 1);
-      consumptiondata.data = consumptiondata.data.splice(0, 1);
+      productiondata.data.splice(0, 1);
+      consumptiondata.data.splice(0, 1);
       this.labels = this.labels.splice(0, 1);
     }
     if (this.lineChart) this.lineChart.destroy();
