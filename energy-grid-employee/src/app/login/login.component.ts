@@ -10,14 +10,16 @@ import { AuthenticationService } from '../REST/authentication.service';
 export class LoginComponent implements OnInit {
   clientNr: string;
   password: string;
-  loginResult: boolean;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   login(): void {
     this.authenticationService.getLogin(this.clientNr, this.password);

@@ -2,6 +2,8 @@ import { NgModule, Injectable } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
+import { Authentication } from './app-routing-guards';
+import {DashboardComponent} from "./dashboard/dashboard.component";
 import { CustomermanagementComponent} from "./customermanagement/customermanagement.component";
 import { NewcustomerComponent } from "./customermanagement/newcustomer/newcustomer.component";
 import { SearchcustomerComponent} from "./customermanagement/searchcustomer/searchcustomer.component";
@@ -9,8 +11,10 @@ import { CustomeroverviewComponent } from "./customermanagement/customeroverview
 import { CustomerComponent} from "./customermanagement/customeroverview/customer/customer.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'changepass', component: ChangePasswordComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'changepass', component: ChangePasswordComponent},
   { path: 'customermanagement', component: CustomermanagementComponent },
   { path: 'customermanagement/newcustomer', component: NewcustomerComponent },
