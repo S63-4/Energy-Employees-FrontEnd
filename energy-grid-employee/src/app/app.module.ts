@@ -14,9 +14,16 @@ import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { stompConfig } from './app.stomp.config';
+import {CustomermanagementComponent} from "./customermanagement/customermanagement.component";
+import { NewcustomerComponent } from './customermanagement/newcustomer/newcustomer.component';
+import { SearchcustomerComponent } from './customermanagement/searchcustomer/searchcustomer.component';
+import { CustomeroverviewComponent } from './customermanagement/customeroverview/customeroverview.component';
+import { CustomerComponent } from './customermanagement/customeroverview/customer/customer.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent],
+@NgModule({
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
