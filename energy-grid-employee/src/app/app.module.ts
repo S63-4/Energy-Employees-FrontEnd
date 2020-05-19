@@ -21,9 +21,7 @@ import { CustomeroverviewComponent } from './customermanagement/customeroverview
 import { CustomerComponent } from './customermanagement/customeroverview/customer/customer.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent],
-@NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
