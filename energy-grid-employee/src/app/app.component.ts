@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
-import { AuthenticationService } from './REST/authentication.service';
-import { AppConfig } from './app.config';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { AuthenticationService } from "./REST/authentication.service";
+import { AppConfig } from "./app.config";
+import { Router } from "@angular/router";
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = 'Employee portal Energy Grid';
+  title = "Employee portal Energy Grid";
   loggedIn = false;
   constructor(
     private authService: AuthenticationService,
     private router: Router
   ) {
-    //this.subscribeEvents();
+    this.subscribeEvents();
   }
 
   subscribeEvents(): void {
@@ -22,11 +22,11 @@ export class AppComponent {
       this.loggedIn = loggedIn;
 
       if (loggedIn) {
-            console.log('ingelogd');
-        this.router.navigateByUrl('/dashboard');
+        console.log("ingelogd");
+        this.router.navigateByUrl("/dashboard");
       } else {
         localStorage.removeItem(AppConfig.LocalStorageKeys.TOKEN);
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl("/login");
       }
     });
   }
