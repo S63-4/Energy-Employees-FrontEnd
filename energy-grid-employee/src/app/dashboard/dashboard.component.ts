@@ -5,6 +5,7 @@ import * as SockJS from "sockjs-client";
 import { Rcv_message } from "../websocket/JSONmodels/rcv_message";
 import { Chart } from "chart.js";
 import { DatePipe } from "@angular/common";
+import { AppConfig } from '../app.config';
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -96,7 +97,7 @@ export class DashboardComponent implements OnInit {
    */
   connect(url: string) {
     url = "/topic/regional";
-    var socket = new SockJS("http://localhost:9060/websocket");
+    var socket = new SockJS(AppConfig.WebSocketBaseUrl +"websocket");
     this.stompClient = Stomp.over(socket);
     console.log(socket);
     this.stompClient.connect({}, (frame) => {
