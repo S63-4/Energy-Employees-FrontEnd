@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Stomp } from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 import { Rcv_message } from "../websocket/JSONmodels/rcv_message";
 import { Chart } from "chart.js";
 import { DatePipe } from "@angular/common";
-import { AppConfig } from '../app.config';
+import { AppConfig } from "../app.config";
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
 
   styleUrls: ["./dashboard.component.scss"],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   private stompClient: any;
   data: Rcv_message[] = [];
   lineChartData: ChartModel[] = [];
@@ -37,6 +37,9 @@ export class DashboardComponent implements OnInit {
   onChartClick(event) {
     console.log(event);
   }
+  ngOnDestroy(): void {
+    this.disconnect();
+  }
 
   updateCharts(body: Rcv_message) {
     var consumptionTotal =
@@ -59,10 +62,10 @@ export class DashboardComponent implements OnInit {
     var datepipe = new DatePipe("en-US");
     var date = datepipe.transform(body.date, "shortTime");
     this.labels.push(date);
-    if (this.labels.length > 15) {
+    if (this.labels.length > 2) {
       productiondata.data.splice(0, 1);
       consumptiondata.data.splice(0, 1);
-      this.labels = this.labels.splice(0, 1);
+      this.labels.splice(0, 1);
     }
     if (this.lineChart) this.lineChart.destroy();
     let dashboard = document.getElementById("chart") as HTMLCanvasElement;
@@ -97,7 +100,7 @@ export class DashboardComponent implements OnInit {
    */
   connect(url: string) {
     url = "/topic/regional";
-    var socket = new SockJS(AppConfig.WebSocketBaseUrl +"websocket");
+    var socket = new SockJS(AppConfig.WebSocketBaseUrl + "websocket");
     this.stompClient = Stomp.over(socket);
     console.log(socket);
     this.stompClient.connect({}, (frame) => {
