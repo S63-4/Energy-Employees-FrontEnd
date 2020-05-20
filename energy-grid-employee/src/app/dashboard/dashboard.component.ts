@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     var datepipe = new DatePipe("en-US");
     var date = datepipe.transform(body.date, "shortTime");
     this.labels.push(date);
-    if (this.labels.length > 2) {
+    if (this.labels.length > 15) {
       productiondata.data.splice(0, 1);
       consumptiondata.data.splice(0, 1);
       this.labels.splice(0, 1);
