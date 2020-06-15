@@ -1,5 +1,5 @@
 export class JsonObject {
-  dateTime: Date;
+  date: string;
   region: string;
   consumption: number;
   production: number;

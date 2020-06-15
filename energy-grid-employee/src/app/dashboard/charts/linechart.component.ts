@@ -47,7 +47,7 @@ export class LinechartComponent {
     productiondata.data.push(productionTotal);
     consumptiondata.data.push(consumptionTotal);
     var datepipe = new DatePipe("en-US");
-    var date = datepipe.transform(body.dateTime, "shortTime");
+    var date = datepipe.transform(body.date, "shortTime");
     this.labels.push(date);
     if (this.labels.length > 15) {
       productiondata.data.splice(0, 1);
