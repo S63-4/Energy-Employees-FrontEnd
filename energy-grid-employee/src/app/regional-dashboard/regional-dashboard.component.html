@@ -1,9 +1,6 @@
-<div *ngFor="let region of regions">
-  <div id="dashboard-chart">
-    <h2 class="title">{{region.region}}</h2>
-    <div style="display: block">
-      <canvas id="chart" height="350" width="700">
-      </canvas>
-    </div>
-  </div>
+<div *ngFor="let region of regionNames">
+  <linechart *ngIf="Zeeland.length > 0" [data]="Zeeland" [text]="Zeeland[0].region" [chartId]="Zeeland[0].region"></linechart>
+  <linechart *ngIf="NoordBrabant.length > 0" [data]="NoordBrabant" [text]="NoordBrabant[0].region" [chartId]="NoordBrabant[0].region"></linechart>
+  <linechart *ngIf="NoordHolland.length > 0" [data]="NoordHolland" [text]="NoordHolland[0].region" [chartId]="NoordHolland[0].region"></linechart>
+  <linechart *ngIf="Friesland.length > 0" [data]="Friesland" [text]="Friesland[0].region" [chartId]="Friesland[0].region"></linechart>
 </div>
