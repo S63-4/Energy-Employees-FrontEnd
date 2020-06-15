@@ -19,9 +19,11 @@ import { NewcustomerComponent } from './customermanagement/newcustomer/newcustom
 import { SearchcustomerComponent } from './customermanagement/searchcustomer/searchcustomer.component';
 import { CustomeroverviewComponent } from './customermanagement/customeroverview/customeroverview.component';
 import { CustomerComponent } from './customermanagement/customeroverview/customer/customer.component';
+import { NationalDashboardComponent } from './national-dashboard/national-dashboard.component';
+import { RegionalDashboardComponent } from './regional-dashboard/regional-dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent],
+  declarations: [AppComponent, LoginComponent, ChangePasswordComponent, DashboardComponent, CustomermanagementComponent, NewcustomerComponent, SearchcustomerComponent, CustomeroverviewComponent, CustomerComponent, NationalDashboardComponent, RegionalDashboardComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
