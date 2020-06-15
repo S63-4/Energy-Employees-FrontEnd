@@ -15,7 +15,7 @@ export class DashboardComponent {
   lineChart: Chart;
   showText: boolean;
   @Input() text: string;
-  chartId: string;
+  @Input() chartId: string;
   constructor() {}
   ngOnInit(): void {
     let production: ChartModel = new ChartModel(
