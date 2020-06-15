@@ -4,11 +4,11 @@ import { Rcv_message } from "src/app/websocket/JSONmodels/rcv_message";
 import { JsonObject } from "src/app/models/jsonObject";
 import { DatePipe } from "@angular/common";
 @Component({
-  selector: "line-chart",
+  selector: "linechart",
   templateUrl: "./linechart.component.html",
   styleUrls: ["./linechart.component.scss"],
 })
-export class DashboardComponent {
+export class LinechartComponent {
   @Input() data: JsonObject[];
   lineChartData: ChartModel[] = [];
   labels: string[] = [];
