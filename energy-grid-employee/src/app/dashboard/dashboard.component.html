@@ -1,9 +1,19 @@
 <div>
-    <div id="dashboard-chart">
-        <h2 class="title">Verbruik in kWh</h2>
-        <div style="display: block">
-            <canvas id="chart" height="350" width="700">
-            </canvas>
+  <div id="dashboard-chart">
+    <div style="display: block;" class="total">
+      <h2 class="title" *ngIf="showText">Verbruik in kWh</h2>
+      <canvas id="chart" height="350" width="700"> </canvas>
+    </div>
+    <div class="donuts">
+
+        <div class="donut col-md-6">
+            <h3 class="title" *ngIf="showText">Consumptie</h3>
+            <canvas id="donut-consumer-chart" height="350" width="700"> </canvas>
+        </div>
+        <div class="donut col-md-6">
+            <h3 class="title" *ngIf="showText">Productie</h3>
+            <canvas id="donut-production-chart" height="350" width="700"> </canvas>
         </div>
     </div>
+  </div>
 </div>
