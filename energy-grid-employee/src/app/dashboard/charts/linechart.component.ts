@@ -1,4 +1,9 @@
-import { Component, Input } from "@angular/core";
+import {
+  Component,
+  Input,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+} from "@angular/core";
 import { Chart } from "chart.js";
 import { Rcv_message } from "src/app/websocket/JSONmodels/rcv_message";
 import { JsonObject } from "src/app/models/jsonObject";
@@ -7,17 +12,18 @@ import { DatePipe } from "@angular/common";
   selector: "linechart",
   templateUrl: "./linechart.component.html",
   styleUrls: ["./linechart.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LinechartComponent {
   @Input() data: JsonObject[];
   lineChartData: ChartModel[] = [];
   labels: string[] = [];
   lineChart: Chart;
-  showText: boolean;
+  showText: boolean = false;
   @Input() text: string;
   @Input() chartId: string;
-  constructor() {}
-  ngOnInit(): void {
+  constructor(private cdRef: ChangeDetectorRef) {}
+  ngAfterViewInit(): void {
     let production: ChartModel = new ChartModel(
       "Productie",
       false,
@@ -78,6 +84,7 @@ export class LinechartComponent {
       },
     });
     this.showText = true;
+    this.cdRef.detectChanges();
   }
 }
 class ChartModel {

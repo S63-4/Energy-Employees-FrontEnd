@@ -1,0 +1,19 @@
+app-regional-dashboard {
+  #dashboard-chart {
+    //  display: flex;
+
+    .chartrow {
+      width: 100%;
+      display: flex;
+    }
+    .error {
+      display: inline-block;
+      text-align: center;
+      p {
+        margin-top: 160px;
+        color: red;
+        font-size: 25px;
+      }
+    }
+  }
+}

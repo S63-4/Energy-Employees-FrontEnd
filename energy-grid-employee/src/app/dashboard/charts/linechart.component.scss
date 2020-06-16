@@ -1,20 +1,11 @@
-.title {
-  display: inline;
-}
-#dashboard-chart {
-  margin: 25px 0 0 25px;
-  position: relative;
-  align-items: center;
-  text-align: center;
-  //flex-direction: column;
-  .total {
-    width: 100%;
+linechart {
+  display: inline-block;
+  
+  .linechart-container {
     text-align: center;
-  }
-  #chart {
-    margin: auto;
-  }
-  .donuts {
-    display: flex;
+    canvas {
+      display: block;
+      margin: 10px auto 0;
+    }
   }
 }

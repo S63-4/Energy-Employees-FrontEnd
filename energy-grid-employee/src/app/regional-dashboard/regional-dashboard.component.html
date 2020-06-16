@@ -1,6 +1,58 @@
-<div *ngFor="let region of regionNames">
-  <linechart *ngIf="Zeeland.length > 0" [data]="Zeeland" [text]="Zeeland[0].region" [chartId]="Zeeland[0].region"></linechart>
-  <linechart *ngIf="NoordBrabant.length > 0" [data]="NoordBrabant" [text]="NoordBrabant[0].region" [chartId]="NoordBrabant[0].region"></linechart>
-  <linechart *ngIf="NoordHolland.length > 0" [data]="NoordHolland" [text]="NoordHolland[0].region" [chartId]="NoordHolland[0].region"></linechart>
-  <linechart *ngIf="Friesland.length > 0" [data]="Friesland" [text]="Friesland[0].region" [chartId]="Friesland[0].region"></linechart>
+<div id="dashboard-chart">
+  <div class="chartrow">
+    <linechart
+      class="col-md-6"
+      *ngIf="Zeeland.length > 0"
+      [data]="Zeeland"
+      [text]="Zeeland[0].region"
+      [chartId]="Zeeland[0].region"
+    ></linechart>
+    <div
+      class="col-md-6 error"
+      *ngIf="(!Zeeland || Zeeland.length < 1) && finishedloading"
+    >
+      <p>De data van Zeeland is niet beschikbaar.</p>
+    </div>
+    <linechart
+      class="col-md-6"
+      *ngIf="NoordBrabant.length > 0"
+      [data]="NoordBrabant"
+      [text]="NoordBrabant[0].region"
+      [chartId]="NoordBrabant[0].region"
+    ></linechart>
+    <div
+      class="col-md-6 error"
+      *ngIf="(!NoordBrabant || NoordBrabant.length < 1) && finishedloading"
+    >
+      <p>De data van Noord Brabant is niet beschikbaar.</p>
+    </div>
+  </div>
+  <div class="chartrow">
+    <linechart
+      class="col-md-6"
+      *ngIf="NoordHolland.length > 0"
+      [data]="NoordHolland"
+      [text]="NoordHolland[0].region"
+      [chartId]="NoordHolland[0].region"
+    ></linechart>
+    <div
+      class="col-md-6 error"
+      *ngIf="(!NoordHolland || NoordHolland.length < 1) && finishedloading"
+    >
+      <p>De data van Noord Holland is niet beschikbaar.</p>
+    </div>
+    <linechart
+      class="col-md-6"
+      *ngIf="Friesland.length > 0"
+      [data]="Friesland"
+      [text]="Friesland[0].region"
+      [chartId]="Friesland[0].region"
+    ></linechart>
+    <div
+      class="col-md-6 error"
+      *ngIf="(!Friesland || Friesland.length < 1) && finishedloading"
+    >
+      <p>De data van Friesland is niet beschikbaar.</p>
+    </div>
+  </div>
 </div>
