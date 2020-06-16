@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {AppConfig} from "../app.config";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class NationalService {
     } else if (region === "Friesland"){
       URL = ``;
     } else if (region === "Zeeland"){
-      URL = `http://35.189.86.8/rest-forwarder/regional`;
+      URL = `${AppConfig.ApiBaseURL}/rest-forwarder/regional`;
     }
 
     return this.http.get<any>(URL);
