@@ -57,6 +57,9 @@ export class NationalDashboardComponent implements AfterViewInit {
               this.jsonObject.consumption = this.totalConsumption;
               this.jsonObject.production = this.totalProduction;
               this.national.push(this.jsonObject);
+              if (this.national.length > 15) {
+                this.national.splice(0, 1);
+              }
               console.log(this.jsonObject);
               if (
                 this.regionNames.indexOf(region) ===
