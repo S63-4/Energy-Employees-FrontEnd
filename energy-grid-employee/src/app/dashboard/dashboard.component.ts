@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   lineChartData: ChartModel[] = [];
   labels: string[] = [];
   lineChart: Chart;
+  showText: boolean;
   constructor() {}
   ngOnInit(): void {
     let production: ChartModel = new ChartModel(
@@ -90,8 +91,64 @@ export class DashboardComponent implements OnInit, OnDestroy {
         },
       },
     });
+    this.updateConsumptionDoughnutCharts(body);
+    this.updateProductionDoughnutCharts(body);
+    this.showText = true;
   }
+  updateConsumptionDoughnutCharts(body: Rcv_message): void {
+    let dashboard = document.getElementById(
+      "donut-consumer-chart"
+    ) as HTMLCanvasElement;
+    const context = dashboard.getContext("2d");
+    context.clearRect(0, 0, dashboard.width, dashboard.height);
+    var data = {
+      datasets: [
+        {
+          data: [
+            body.consumption.big_consumers.total_consumption,
+            body.consumption.households.total_consumption,
+            body.consumption.industries.total_consumption,
+          ],
+          backgroundColor: ["#ff0000", "#00ff00", "#0000ff"],
+        },
+      ],
 
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: ["Big consumers", "Households", "Industries"],
+    };
+    new Chart(context, {
+      type: "doughnut",
+      data: data,
+    });
+  
+  }
+  updateProductionDoughnutCharts(body : Rcv_message) {
+    let dashboard = document.getElementById(
+      "donut-production-chart"
+    ) as HTMLCanvasElement;
+    const context = dashboard.getContext("2d");
+    context.clearRect(0, 0, dashboard.width, dashboard.height);
+    var data = {
+      datasets: [
+        {
+          data: [
+            body.production.power_plants.total_production,
+            body.production.households.total_production,
+            body.production.solar_farms.total_production,
+            body.production.wind_farms.total_production,
+          ],
+          backgroundColor: ["#ff0000", "#00ff00", "#0000ff", "#f0ff00"],
+        },
+      ],
+
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: ["Power plants", "Households", "Solar farms", "Wind farms"],
+    };
+    new Chart(context, {
+      type: "doughnut",
+      data: data,
+    });
+  }
   /**
    * depending on the simulator you want to connect to:
    * /topic/regional for the regional simulator
@@ -108,6 +165,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.stompClient.subscribe(url, (message) => {
         let body: Rcv_message = new Rcv_message();
         body.fillFromJSON(message.body);
+        console.log(body);
         this.updateCharts(body);
       });
     });

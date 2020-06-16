@@ -1,0 +1,11 @@
+linechart {
+  display: inline-block;
+  
+  .linechart-container {
+    text-align: center;
+    canvas {
+      display: block;
+      margin: 10px auto 0;
+    }
+  }
+}
