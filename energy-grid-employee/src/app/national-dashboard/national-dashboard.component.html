@@ -1,1 +1,1 @@
-<p>national-dashboard works!</p>
+<linechart *ngIf="national.length > 0" [data]="national" [text]="national[0].region" [chartId]="national[0].region"></linechart>

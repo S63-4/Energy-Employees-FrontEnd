@@ -25,6 +25,7 @@ export class RegionalDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRegions();
+    this.getEachMinute();
   }
 
   getRegions() {
