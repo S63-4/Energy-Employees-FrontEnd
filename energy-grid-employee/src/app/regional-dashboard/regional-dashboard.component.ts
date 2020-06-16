@@ -21,7 +21,7 @@ export class RegionalDashboardComponent implements OnInit {
   NoordHolland: JsonObject[] = [];
   Friesland: JsonObject[] = [];
   finishedloading: boolean = false;
-  loading:boolean = false;
+  loading: boolean = false;
   constructor(private nationalService: NationalService) {}
 
   ngOnInit(): void {
@@ -40,6 +40,12 @@ export class RegionalDashboardComponent implements OnInit {
 
           try {
             if (data && data.region) {
+              if (this.Zeeland.length > 15) {
+                this.Zeeland.splice(0, 1);
+                this.NoordBrabant.splice(0, 1);
+                this.NoordHolland.splice(0, 1);
+                this.Friesland.splice(0, 1);
+              }
               if (data.region === "Zeeland") {
                 this.Zeeland.push(data);
               } else if (data.region === "Noord Holland") {
