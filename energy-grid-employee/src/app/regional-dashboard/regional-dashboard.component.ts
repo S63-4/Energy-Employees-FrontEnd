@@ -21,6 +21,7 @@ export class RegionalDashboardComponent implements OnInit {
   NoordHolland: JsonObject[] = [];
   Friesland: JsonObject[] = [];
   finishedloading: boolean = false;
+  loading:boolean = false;
   constructor(private nationalService: NationalService) {}
 
   ngOnInit(): void {
@@ -29,6 +30,8 @@ export class RegionalDashboardComponent implements OnInit {
   }
 
   getRegions() {
+    this.loading = true;
+
     for (let regionname of this.regionNames) {
       console.log(regionname);
       this.nationalService.getRegional(regionname).subscribe(
@@ -52,6 +55,7 @@ export class RegionalDashboardComponent implements OnInit {
               this.regionNames.length - 1
             ) {
               this.finishedloading = true;
+              this.loading = false;
             }
           } catch (e) {
             console.error("gecatchte error", e);
