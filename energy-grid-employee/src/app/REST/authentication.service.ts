@@ -32,7 +32,7 @@ export class AuthenticationService {
           this.isLoggedIn.next(!!token);
         },
         (error) => {
-          console.error(error);
+          alert('Email and Password combination is incorrect!');
         }
       );
   }
