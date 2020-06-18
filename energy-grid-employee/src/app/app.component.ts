@@ -15,6 +15,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.subscribeEvents();
+    
   }
 
   subscribeEvents(): void {
