@@ -11,17 +11,25 @@ import { AuthenticationService } from '../authentication.service';
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private auth: AuthenticationService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
-    // Get the auth token from the service.
-    const authToken = this.auth.getAuthorizationToken();
-    if (!authToken) { return next.handle(req); }
-    // Clone the request and replace the original headers with
-    // cloned headers, updated with the authorization.
-    const authReq = req.clone({
-      setHeaders: { Authorization: authToken }
-    });
+  //ZXh0ZXJuYWw6b1dQWW05dElPaVlhMU9iYUkybU0=
 
-    // send cloned request with header to the next handler.
-    return next.handle(authReq);
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+      console.log(req);
+      // Get the auth token from the service.
+      var authToken = this.auth.getAuthorizationToken();
+      if(req.url === "https://staging.external.powerprice.marstan.net/status/getStatus"){
+        authToken = "Basic ZXh0ZXJuYWw6b1dQWW05dElPaVlhMU9iYUkybU0=";
+      }
+      if (!authToken) { return next.handle(req); }
+      // Clone the request and replace the original headers with
+      // cloned headers, updated with the authorization.
+      const authReq = req.clone({
+        setHeaders: { Authorization: authToken }
+      });
+
+      console.log("Authorized request: " + authReq);
+
+      // send cloned request with header to the next handler.
+      return next.handle(authReq);
   }
 }

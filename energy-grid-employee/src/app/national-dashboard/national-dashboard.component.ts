@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   AfterViewChecked,
   AfterViewInit,
+  ChangeDetectorRef
 } from "@angular/core";
 import { JsonObject } from "../models/jsonObject";
 import { NationalService } from "../REST/national.service";
@@ -27,16 +28,17 @@ export class NationalDashboardComponent implements AfterViewInit {
   jsonObject: JsonObject;
   national: JsonObject[] = [];
   loading: boolean = false;
-  constructor(private nationalService: NationalService) {}
+  constructor(private nationalService: NationalService,
+              private changeDetection: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.getRegions();
-
     this.getEachMinute();
   }
 
   getRegions(): void {
     this.loading = true;
+    this.changeDetection.detectChanges();
     this.totalConsumption = 0;
     this.totalProduction = 0;
     this.jsonObject = new JsonObject();
@@ -66,6 +68,7 @@ export class NationalDashboardComponent implements AfterViewInit {
                 this.regionNames.length - 1
               ) {
                 this.loading = false;
+                this.changeDetection.detectChanges();
                 this.updateConsumptionDoughnutCharts();
               }
             }
