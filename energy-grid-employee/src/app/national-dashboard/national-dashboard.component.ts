@@ -82,7 +82,7 @@ export class NationalDashboardComponent implements AfterViewInit {
 
   updateConsumptionDoughnutCharts(): void {
     let dashboard = document.getElementById(
-      "donut-consumer-chart"
+      "donut-national-consumer-chart"
     ) as HTMLCanvasElement;
     const context = dashboard.getContext("2d");
     context.clearRect(0, 0, dashboard.width, dashboard.height);
@@ -105,7 +105,7 @@ export class NationalDashboardComponent implements AfterViewInit {
   }
   updateProductionDoughnutCharts() {
     let dashboard = document.getElementById(
-      "donut-production-chart"
+      "donut-national-production-chart"
     ) as HTMLCanvasElement;
     const context = dashboard.getContext("2d");
     context.clearRect(0, 0, dashboard.width, dashboard.height);
