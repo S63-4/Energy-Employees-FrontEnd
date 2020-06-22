@@ -30,16 +30,16 @@
   <div class="chartrow">
     <linechart
       class="col-md-6"
-      *ngIf="NoordHolland.length > 0"
-      [data]="NoordHolland"
-      [text]="NoordHolland[0].region"
-      [chartId]="NoordHolland[0].region"
+      *ngIf="ZuidHolland.length > 0"
+      [data]="ZuidHolland"
+      [text]="ZuidHolland[0].region"
+      [chartId]="ZuidHolland[0].region"
     ></linechart>
     <div
       class="col-md-6 error"
-      *ngIf="(!NoordHolland || NoordHolland.length < 1) && finishedloading"
+      *ngIf="(!ZuidHolland || ZuidHolland.length < 1) && finishedloading"
     >
-      <p>De data van Noord Holland is niet beschikbaar.</p>
+      <p>De data van Zuid Holland is niet beschikbaar.</p>
     </div>
     <linechart
       class="col-md-6"
