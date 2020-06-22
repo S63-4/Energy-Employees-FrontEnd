@@ -19,7 +19,7 @@ import { Chart } from "chart.js";
 export class NationalDashboardComponent implements AfterViewInit {
   regionNames: Region[] = [
     new Region("Noord-Brabant"),
-    new Region("Noord Holland"),
+    new Region("Zuid-Holland"),
     new Region("Friesland"),
     new Region("Zeeland"),
   ];
