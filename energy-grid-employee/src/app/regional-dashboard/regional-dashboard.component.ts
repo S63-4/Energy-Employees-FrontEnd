@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { NationalService } from "../REST/national.service";
 import { JsonObject } from "../models/jsonObject";
 import { interval, Observable, Subscription } from "rxjs";
@@ -22,22 +27,27 @@ export class RegionalDashboardComponent implements OnInit {
   Friesland: JsonObject[] = [];
   finishedloading: boolean = false;
   loading: boolean = false;
-  constructor(private nationalService: NationalService) {}
+  constructor(
+    private nationalService: NationalService,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.getRegions();
+    this.loading = true;
+    this.getRegion(0).then(() =>
+      this.getRegion(1).then(() =>
+        this.getRegion(2).then(() => this.getRegion(3))
+      )
+    );
     this.getEachMinute();
   }
 
-  getRegions() {
-    this.loading = true;
-
-    for (let regionname of this.regionNames) {
-      console.log(regionname);
-      this.nationalService.getRegional(regionname).subscribe(
+  getRegion(i: number): Promise<void> {
+    return this.nationalService
+      .getRegional(this.regionNames[i])
+      .toPromise()
+      .then(
         (data: any) => {
-          console.log(regionname);
-
           try {
             if (data && data.region) {
               if (this.Zeeland.length > 15) {
@@ -48,7 +58,7 @@ export class RegionalDashboardComponent implements OnInit {
               }
               if (data.region === "Zeeland") {
                 this.Zeeland.push(data);
-              } else if (data.region === "Zuid-Holland") {
+              } else if (data.region === "Noord-Holland") {
                 this.NoordHolland.push(data);
               } else if (data.region === "Noord-Brabant") {
                 this.NoordBrabant.push(data);
@@ -57,11 +67,14 @@ export class RegionalDashboardComponent implements OnInit {
               }
             }
             if (
-              this.regionNames.indexOf(regionname) ===
+              this.regionNames.indexOf(this.regionNames[i]) ===
               this.regionNames.length - 1
             ) {
+              this.loading = true;
+              this.cdRef.detectChanges();
               this.finishedloading = true;
               this.loading = false;
+              this.cdRef.detectChanges();
             }
           } catch (e) {
             console.error("gecatchte error", e);
@@ -71,12 +84,15 @@ export class RegionalDashboardComponent implements OnInit {
           console.error("gecatchte error", err);
         }
       );
-    }
   }
 
   getEachMinute(): void {
     interval(1000 * 60).subscribe((x) => {
-      this.getRegions();
+      this.getRegion(0).then(() =>
+        this.getRegion(1).then(() =>
+          this.getRegion(2).then(() => this.getRegion(3))
+        )
+      );
     });
   }
 }
