@@ -14,8 +14,8 @@ export class NationalService {
     var URL;
     if (region === "Noord-Brabant"){
       URL = `https://staging.external.powerprice.marstan.net/status/getStatus`;
-    } else if (region === "Zuid-Holland"){
-      URL = `http://fsenergyservice.daphneprojects.online/energie/nh/2020/6/18`;
+    } else if (region === "Noord-Holland"){
+      URL = `http://fsenergyservice.daphneprojects.online/energie/nh/2020/6/22`;
     } else if (region === "Friesland"){
       URL = ``;
     } else if (region === "Zeeland"){

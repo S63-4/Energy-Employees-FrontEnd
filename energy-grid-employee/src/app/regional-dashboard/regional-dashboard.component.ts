@@ -12,13 +12,13 @@ import { interval, Observable, Subscription } from "rxjs";
 export class RegionalDashboardComponent implements OnInit {
   regionNames: string[] = [
     "Noord-Brabant",
-    "Zuid-Holland",
+    "Noord-Holland",
     "Friesland",
     "Zeeland",
   ];
   Zeeland: JsonObject[] = [];
   NoordBrabant: JsonObject[] = [];
-  ZuidHolland: JsonObject[] = [];
+  NoordHolland: JsonObject[] = [];
   Friesland: JsonObject[] = [];
   finishedloading: boolean = false;
   loading: boolean = false;
@@ -43,13 +43,13 @@ export class RegionalDashboardComponent implements OnInit {
               if (this.Zeeland.length > 15) {
                 this.Zeeland.splice(0, 1);
                 this.NoordBrabant.splice(0, 1);
-                this.ZuidHolland.splice(0, 1);
+                this.NoordHolland.splice(0, 1);
                 this.Friesland.splice(0, 1);
               }
               if (data.region === "Zeeland") {
                 this.Zeeland.push(data);
               } else if (data.region === "Zuid-Holland") {
-                this.ZuidHolland.push(data);
+                this.NoordHolland.push(data);
               } else if (data.region === "Noord-Brabant") {
                 this.NoordBrabant.push(data);
               } else if (data.region === "Friesland") {
