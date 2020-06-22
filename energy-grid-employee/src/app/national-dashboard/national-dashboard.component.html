@@ -1,18 +1,24 @@
-<div class="col-md-12 national-container" *ngIf="!loading">
-  <linechart
+<ng-container *ngIf="!loading">
+
+  <div class="col-md-12 national-container">
+    <linechart
     *ngIf="national.length > 0"
     [data]="national"
     [text]="national[0].region"
     [chartId]="national[0].region"
-  ></linechart>
-</div>
-<div class="donuts">
-  <div class="donut col-md-6">
-    <h3 class="title">Consumptie</h3>
-    <canvas id="donut-national-consumer-chart" height="350" width="700"> </canvas>
+    ></linechart>
   </div>
-  <div class="donut col-md-6">
-    <h3 class="title">Productie</h3>
-    <canvas id="donut-national-production-chart" height="350" width="700"> </canvas>
+  <div class="donuts">
+    <div class="donut col-md-6">
+      <h3 class="title">Consumptie</h3>
+      <canvas id="donut-national-consumer-chart" height="350" width="700"> </canvas>
+    </div>
+    <div class="donut col-md-6">
+      <h3 class="title">Productie</h3>
+      <canvas id="donut-national-production-chart" height="350" width="700"> </canvas>
   </div>
 </div>
+</ng-container>
+<ng-container *ngIf="loading">
+  <h1>Aan het laden...</h1>
+</ng-container>

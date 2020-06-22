@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   AfterViewChecked,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from "@angular/core";
 import { JsonObject } from "../models/jsonObject";
 import { NationalService } from "../REST/national.service";
@@ -28,11 +28,12 @@ export class NationalDashboardComponent implements AfterViewInit {
   jsonObject: JsonObject;
   national: JsonObject[] = [];
   loading: boolean = false;
-  constructor(private nationalService: NationalService,
-              private changeDetection: ChangeDetectorRef) {}
+  constructor(
+    private nationalService: NationalService,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit(): void {
-    this.getRegions();
     this.getEachMinute();
   }
 
@@ -42,31 +43,38 @@ export class NationalDashboardComponent implements AfterViewInit {
     this.totalConsumption = 0;
     this.totalProduction = 0;
     this.jsonObject = new JsonObject();
-    for (let region of this.regionNames) {
-      var regionname = region.name;
-      console.log(regionname);
-      this.nationalService.getRegional(regionname).subscribe(
+    this.getRegion(0).then(() =>
+      this.getRegion(1).then(() =>
+        this.getRegion(2).then(() => this.getRegion(3))
+      )
+    );
+  }
+  getRegion(i: number): Promise<void> {
+    var regionname = this.regionNames[i].name;
+    return this.nationalService
+      .getRegional(regionname)
+      .toPromise()
+      .then(
         (data: any) => {
-          console.log(regionname);
           try {
             if (data && data.region) {
-              region.consumption = data.consumption;
-              region.production = data.production;
+              this.regionNames[i].consumption = data.consumption;
+              this.regionNames[i].production = data.production;
               this.totalConsumption += data.consumption;
               this.totalProduction += data.production;
-              this.jsonObject.date = data.date;
+              this.jsonObject.date = new Date().toISOString();
               this.jsonObject.region = "Nationaal";
               this.jsonObject.consumption = this.totalConsumption;
               this.jsonObject.production = this.totalProduction;
-              this.national.push(this.jsonObject);
               if (this.national.length > 15) {
                 this.national.splice(0, 1);
               }
-              console.log(this.jsonObject);
               if (
-                this.regionNames.indexOf(region) ===
+                this.regionNames.indexOf(this.regionNames[i]) ===
                 this.regionNames.length - 1
               ) {
+                0;
+                this.national.push(this.jsonObject);
                 this.loading = false;
                 this.changeDetection.detectChanges();
                 this.updateConsumptionDoughnutCharts();
@@ -80,7 +88,6 @@ export class NationalDashboardComponent implements AfterViewInit {
           console.error("gecatchte error", err);
         }
       );
-    }
   }
 
   updateConsumptionDoughnutCharts(): void {
@@ -127,12 +134,15 @@ export class NationalDashboardComponent implements AfterViewInit {
       type: "doughnut",
       data: data,
     });
+    this.loading = false;
+    this.changeDetection.detectChanges();
   }
 
   getEachMinute(): void {
-    interval(1000 * 60).subscribe((x) => {
-      this.getRegions();
-    });
+    this.getRegions();
+    // interval(1000 * 60).subscribe((x) => {
+    //   this.getRegions();
+    // });
   }
 }
 class Region {
