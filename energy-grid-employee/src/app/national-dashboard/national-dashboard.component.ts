@@ -139,10 +139,10 @@ export class NationalDashboardComponent implements AfterViewInit {
   }
 
   getEachMinute(): void {
-    this.getRegions();
-    // interval(1000 * 60).subscribe((x) => {
-    //   this.getRegions();
-    // });
+
+    interval(1000 * 60).subscribe((x) => {
+      this.getRegions();
+    });
   }
 }
 class Region {
